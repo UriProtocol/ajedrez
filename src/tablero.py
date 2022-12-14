@@ -22,7 +22,7 @@ class Tablero:
         self.cuadros[final.fila][final.col].pieza = pieza
 
         #movimiento
-        pieza.movida = True
+        pieza.movido = True
 
         #limpiar movimientos válidos
         pieza.limpiar_movs()

@@ -58,12 +58,24 @@ class Juego:
             #Iterar todos los valores válidos
             for mov in pieza.movs:
                 #Color
-                color = '#242da3' if (mov.final.fila + mov.final.col) % 2 == 0 else '#303cd7'
+                color = '#8ba8f9' if (mov.final.fila + mov.final.col) % 2 == 0 else '#5583f6'
                 #Rect
                 rect = (mov.final.col * TCUAD, mov.final.fila * TCUAD, TCUAD, TCUAD)
                 #Blit
                 pygame.draw.rect(superficie, color, rect)
 
+    def mostrar_ultimo_mov(self, superficie):
+        if self.tablero.ultimo_mov:
+            inicial = self.tablero.ultimo_mov.inicial
+            final = self.tablero.ultimo_mov.final
+
+            for pos in [inicial, final]:
+                #color
+                color = '#fbdebb' if (pos.fila + pos.col) % 2 == 0 else '#f9c186'
+                #rect
+                rect = (pos.col * TCUAD, pos.fila * TCUAD, TCUAD, TCUAD )
+                #blit
+                pygame.draw.rect(superficie, color, rect)
     #Otros métodos
 
     def sig_turno(self):

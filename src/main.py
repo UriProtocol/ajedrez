@@ -34,6 +34,8 @@ class Main:
         while True:
             #Llamando a la función de Game para dibujar el tablero
             juego.mostrar_bg(pantalla)
+            #Mostrar el último mov
+            juego.mostrar_ultimo_mov(pantalla)
             #Mostrando los movimientos
             juego.mostrar_movs(pantalla)
             #Mostrando las piezas en la pantalla
@@ -72,6 +74,7 @@ class Main:
                     if arrastrador.arrastrando:
                         arrastrador.act_mouse(event.pos)
                         juego.mostrar_bg(pantalla)
+                        juego.mostrar_ultimo_mov(pantalla)
                         juego.mostrar_movs(pantalla)
                         juego.mostrar_piezas(pantalla)
                         arrastrador.act_blit(pantalla)
@@ -93,8 +96,9 @@ class Main:
                         #Es movimiento válido?
                         if tablero.mov_valido(arrastrador.pieza, movimiento):
                             tablero.mover(arrastrador.pieza, movimiento)
-                            #mostrar métodos
+                            #métodos de mostrar
                             juego.mostrar_bg(pantalla)
+                            juego.mostrar_ultimo_mov(pantalla)
                             juego.mostrar_piezas(pantalla)
 
                             #Siguiente turno
