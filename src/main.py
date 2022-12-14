@@ -106,6 +106,13 @@ class Main:
 
 
                     arrastrador.soltar_pieza()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        juego.reset()
+                        juego = self.juego
+                        tablero = self.juego.tablero
+                        arrastrador = self.juego.arrastrador
+
                 #Salir de la aplicación
                 elif event.type == pygame.QUIT:
                     pygame.quit()

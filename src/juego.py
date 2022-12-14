@@ -58,7 +58,7 @@ class Juego:
             #Iterar todos los valores válidos
             for mov in pieza.movs:
                 #Color
-                color = '#8ba8f9' if (mov.final.fila + mov.final.col) % 2 == 0 else '#5583f6'
+                color = '#f98b8b' if (mov.final.fila + mov.final.col) % 2 == 0 else '#f65555'
                 #Rect
                 rect = (mov.final.col * TCUAD, mov.final.fila * TCUAD, TCUAD, TCUAD)
                 #Blit
@@ -71,7 +71,7 @@ class Juego:
 
             for pos in [inicial, final]:
                 #color
-                color = '#fbdebb' if (pos.fila + pos.col) % 2 == 0 else '#f9c186'
+                color = '#fbf0bb' if (pos.fila + pos.col) % 2 == 0 else '#f9e685'
                 #rect
                 rect = (pos.col * TCUAD, pos.fila * TCUAD, TCUAD, TCUAD )
                 #blit
@@ -80,3 +80,6 @@ class Juego:
 
     def sig_turno(self):
         self.sig_jugador = 'blanco' if self.sig_jugador == 'negro' else 'negro'
+
+    def reset(self):
+        self.__init__()
