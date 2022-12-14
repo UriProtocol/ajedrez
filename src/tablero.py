@@ -40,6 +40,9 @@ class Tablero:
     def checar_coronacion(self, pieza, final):
         if final.fila == 0 or final.fila == 7:
             self.cuadros[final.fila][final.col].pieza = Reina(pieza.color)
+    #Aún falta programar este método
+    def en_jaque(self, pieza, mov):
+        pass
 
     #Calcular todos los movimientos validos de una pieza en específico en una posición en específico
     def calc_movs(self, pieza, fila, col):
@@ -76,6 +79,7 @@ class Tablero:
                     if self.cuadros[mov_posible_fila][mov_posible_col].tiene_pieza_enemiga(pieza.color):
                         #Crear cuadrados de movimiento inicial y final
                         inicial = Cuadrado(fila, col)
+                        # pieza_final = self.cuadros[mov_posible_fila][mov_posible_col].pieza (para el jaque)
                         final = Cuadrado(mov_posible_fila, mov_posible_col)
                         #Crear un nuevo movimiento
                         movimiento = mov(inicial, final)
@@ -103,6 +107,7 @@ class Tablero:
                     if self.cuadros[mov_posibles_fila][mov_posibles_col].vacio_o_enemiga(pieza.color):
                         # Creando cuadrados del nuevo movimiento
                         inicial = Cuadrado(fila, col)
+                        # pieza_final = self.cuadros[mov_posibles_fila][mov_posibles_col].pieza 
                         final = Cuadrado(mov_posibles_fila, mov_posibles_col) # pieza=pieza
                         # Creando el movimiento
                         movimiento = mov(inicial, final)
@@ -120,6 +125,7 @@ class Tablero:
                     if Cuadrado.en_rango(mov_posible_fila, mov_posible_col):
                         #Crear cuadrados de el posible nuevo movimiento
                         inicial = Cuadrado(fila, col)
+                        # pieza_final = self.cuadros[mov_posible_fila][mov_posible_col].pieza
                         final = Cuadrado(mov_posible_fila, mov_posible_col)
                         #Crer nuevo movimiento posible
                         movimiento = mov(inicial, final)
@@ -128,12 +134,12 @@ class Tablero:
                             #Agregar nuevo movimiento
                             pieza.agregar_mov(movimiento)
                         #Cuadrado con pieza enemiga, agrega movimiento y después se detiene
-                        if self.cuadros[mov_posible_fila][mov_posible_col].tiene_pieza_enemiga(pieza.color):
+                        elif self.cuadros[mov_posible_fila][mov_posible_col].tiene_pieza_enemiga(pieza.color):
                             #Agregar nuevo movimiento
                             pieza.agregar_mov(movimiento)
                             break
                         #Cuadrado tiene pieza amiga, se detiene
-                        if self.cuadros[mov_posible_fila][mov_posible_col].tiene_pieza_amiga(pieza.color):
+                        elif self.cuadros[mov_posible_fila][mov_posible_col].tiene_pieza_amiga(pieza.color):
                             break
 
                     #Fuera del rango
