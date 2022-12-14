@@ -21,6 +21,10 @@ class Tablero:
         self.cuadros[inicial.fila][inicial.col].pieza = None
         self.cuadros[final.fila][final.col].pieza = pieza
 
+        #Coronación del peón
+        if isinstance(pieza, Peon):
+            self.checar_coronacion(pieza, final)
+
         #movimiento
         pieza.movido = True
 
@@ -32,10 +36,15 @@ class Tablero:
 
     def mov_valido(self, pieza, mov):
         return mov in pieza.movs
+
+    def checar_coronacion(self, pieza, final):
+        if final.fila == 0 or final.fila == 7:
+            self.cuadros[final.fila][final.col].pieza = Reina(pieza.color)
+
     #Calcular todos los movimientos validos de una pieza en específico en una posición en específico
     def calc_movs(self, pieza, fila, col):
 
-        #Falta la coronación del peon y el movimiento "en passant" por ahora
+        #Falta el movimiento "en passant" por ahora
         def mov_peon():
             #Ver cuantos pasos puede dar el peon, si no se ha movido de la posición inicial puede dar 2
             pasos = 1 if pieza.movido else 2
